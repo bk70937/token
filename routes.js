@@ -82,6 +82,15 @@ router.get('/api/resetPassword', function (req, res) {
     res.json(reset)
 })
 
+router.get('/api/test', function (req, res) {
+    var reset = {   
+        email: ['gmail@gmail.com'],
+        bool: true,
+        message: 'test changes successfully'
+    }
+    res.json(reset)
+})
+
 
 
 
