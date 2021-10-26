@@ -82,6 +82,15 @@ router.get('/api/resetPassword', function (req, res) {
     res.json(reset)
 })
 
+router.get('/api/test', function (req, res) {
+    var reset = {   
+        email: ['bk@gmail.com'],
+        bool: true,
+        message: 'test email send successfully'
+    }
+    res.json(reset)
+})
+
 // write api for contract
 // router.get('/api/gettranfer',sendTransaction);
 
