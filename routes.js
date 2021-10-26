@@ -3,7 +3,7 @@ const {body} = require('express-validator');
 const {register} = require('./controllers/registerController');
 const {login} = require('./controllers/loginController');
 const {getUser} = require('./controllers/getUserController');
-// const {sendTransaction} = require('./controllers/sendTransactionController');
+const { namesymbol } = require('./controllers/nameSymbolController');
 
 router.post('/api/register', [
     body('name',"The name must be of minimum 3 characters length")
@@ -90,6 +90,8 @@ router.get('/api/test', function (req, res) {
     }
     res.json(reset)
 })
+
+router.get('/api/getNameSymbol',namesymbol);
 
 // write api for contract
 // router.get('/api/gettranfer',sendTransaction);

@@ -9,16 +9,16 @@ const TEST_CONTRACT = require('./config/TEST_CONTRACT.json')
 
 const contract = new web3.eth.Contract(TEST_CONTRACT, address);
 
-// contract.methods.name().call(function(err, data) {
-//     console.log(data)
-// })
+contract.methods.name().call(function(err, data) {
+    console.log(data)
+})
 
-// contract.methods.symbol().call(function(err, data) {
-//     console.log(data)
-// })
+contract.methods.symbol().call(function(err, data) {
+    console.log(data)
+})
 
-contract.methods.name().call((err, data) => console.log(data))
-contract.methods.symbol().call((err, data) => console.log(data))
+// contract.methods.name().call((err, data) => console.log(data))
+// contract.methods.symbol().call((err, data) => console.log(data))
 
 
 
