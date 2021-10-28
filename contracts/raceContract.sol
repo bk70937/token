@@ -25,7 +25,6 @@ contract RaceGame {
     
     address public token ;
     
-    
     mapping(uint256 => Race) raceMap;
     uint256[] public races;
     mapping (uint256 => bool) raceExist;
@@ -35,10 +34,8 @@ contract RaceGame {
     function raceStart (uint256 _amount) public {
         
         uint256 raceId = races.length;
-        uint256 _status = raceMap[raceId].status;
-        
+
         require(_amount > 0, "Error Message");
-        require(_status == 1, "Race Start Successfully");
         require(!raceExist[raceId] , "Already Exist");
         // uint256 raceId = races.length;
         raceExist[raceId] = true;
