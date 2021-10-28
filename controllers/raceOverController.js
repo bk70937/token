@@ -17,24 +17,21 @@ exports.init = function (req,res,next) {
         var raceId = 1
         var status = 1
         var encodedABI = contract.methods.raceOver(raceId, status).encodeABI();        
-        // contract.methods.raceOver(raceId, status).send({
-        //     from: "0xC8Da7b2DA6B2a757AaFaC0ec5E54dC1C3ba42F7f",
-        // }).then(function(receipt) {
             
-            const createTransaction =  web3.eth.accounts.signTransaction(
-                {
-                    from: addressFrom,
-                    to: address,
-                    gas: '22000',
-                    data: encodedABI
-                }, privateKey)
-        
-                // deploy
-                const createReceipt =  web3.eth.sendSignedTransaction(
-                    createTransaction.rawTransaction
-                )
-        
-                console.log(`Transaction successful with hash: ${createReceipt.transactionHash}`)
+        const createTransaction =  web3.eth.accounts.signTransaction(
+            {
+                from: addressFrom,
+                to: address,
+                gas: '22000',
+                data: encodedABI
+            }, privateKey)
+    
+            // deploy
+            const createReceipt =  web3.eth.sendSignedTransaction(
+                createTransaction.rawTransaction
+            )
+    
+            console.log(`Transaction successful with hash: ${createReceipt.transactionHash}`)
 
     } catch(err) {
         next(err);
