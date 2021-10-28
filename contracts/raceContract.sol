@@ -5,7 +5,16 @@ pragma solidity >=0.7.0 <0.9.0;
 // racestart - owner address, raceid, timestamp, status, amount - input
 // recewinner - winner address, winner id, winning amount
 
+import "./SafeMath.sol";
+
+interface Token {
+    function transferFrom(address, address, uint256) external returns (bool) ;
+    function transfer(address, uint256) external returns (bool) ;
+}
+
 contract RaceGame {
+    
+    using SafeMath for uint256;
     
     struct Race 
     {
@@ -13,6 +22,9 @@ contract RaceGame {
         uint256 entryFee;
         uint256 status;
     }
+    
+    address public token ;
+    
     
     mapping(uint256 => Race) raceMap;
     uint256[] public races;
@@ -31,21 +43,26 @@ contract RaceGame {
         // uint256 raceId = races.length;
         raceExist[raceId] = true;
         races.push(raceId); 
-        // raceMap[raceId] = 
         raceMap[raceId].owner = msg.sender;
         raceMap[raceId].entryFee = _amount;
-        
+        Token(token).transferFrom(msg.sender, address(this), _amount);
     }
     
     function raceOver (uint256 _status, uint256 _raceId) public {
-        // if status == 1 else status == 2(winner)
 
-        require(raceMap[_raceId].status == 0, "Game not in Progress");
+        require(raceMap[_raceId].status == 0, "Game not in Progress") ;
         raceMap[_raceId].status = _status ;
-        
+        raceMap[_raceId].owner = msg.sender;
+
         if(_status == 1) {
-            raceBoard[msg.sender][block.timestamp] = raceMap[_raceId].entryFee + winningPercentage;
+            
+            uint256 winningAmount = winningPercentage*raceMap[_raceId].entryFee/100 ;
+            raceBoard[msg.sender][block.timestamp] = raceMap[_raceId].entryFee.add(winningAmount) ;
+            Token(token).transfer(raceMap[_raceId].owner, winningAmount) ;
+            
         }
+
     }
+    
     
 }

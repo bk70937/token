@@ -4,6 +4,7 @@ const {register} = require('./controllers/registerController');
 const {login} = require('./controllers/loginController');
 const {getUser} = require('./controllers/getUserController');
 const { namesymbol } = require('./controllers/nameSymbolController');
+const { raceover } = require('./controllers/raceOverController');
 
 router.post('/api/register', [
     body('name',"The name must be of minimum 3 characters length")
@@ -91,9 +92,16 @@ router.get('/api/test', function (req, res) {
     res.json(reset)
 })
 
-router.get('/api/getNameSymbol',namesymbol);
+router.get('/api/raceOver',function(req, res) {
 
-// write api for contract
-// router.get('/api/gettranfer',sendTransaction);
+    var data = {
+        status: 1,
+        raceId: 1,
+    }
+    res.json(data)
+    
+}, raceover);
+
+router.get('/api/getNameSymbol',namesymbol);
 
 module.exports = router;

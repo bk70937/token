@@ -15,9 +15,6 @@ exports.namesymbol = function (req,res,next) {
         contract.methods.name().call(function(err, data) {
             return res.status(201).json(data);
         })
-        // contract.methods.symbol().call(function(err, data) {
-        //     return res.status(201).json(data);
-        // })
         
     } catch(err) {
         next(err);
