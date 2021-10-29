@@ -10,7 +10,7 @@ const TEST_CONTRACT = require('./config/RACE_ABI.json')
 
 const deploy = async () => { 
  
-    const address = '0x5b12B204a28b4c9b09866Be58C6c00b97139551F'
+    const address = '0x9Ffdd57dE2784e3C90Ae7f4C8DF3F6e0f966BF28'
     const contract = new web3.eth.Contract(TEST_CONTRACT, address)
     var status = 1
     var raceId = 1
