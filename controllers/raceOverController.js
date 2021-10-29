@@ -1,7 +1,7 @@
 require('dotenv').config();
 
 const Web3 = require('web3')
-const infuraUrl = 'https://rinkeby.infura.io/v3/90fd31f724654e36be4daf9d1cc7850a' // instead of infura will be used bscscan
+const bscScan = 'https://data-seed-prebsc-1-s1.binance.org:8545/' // instead of infura will be used bscscan
 const RACE_CONTRACT = require('../config/RACE_ABI.json')
 const privateKey = process.env.privateKey
 const addressFrom = '0xF35ecD64D97B0Fcf8c90fbCFD163230d75003BF6' 
@@ -11,7 +11,7 @@ exports.init = function (req,res,next) {
 
     try {
         
-        const web3 = new Web3(infuraUrl)
+        const web3 = new Web3(bscScan)
         const address = '0x35621ddB21653fc5c006F5Db29769E813b8F6406'
         const contract = new web3.eth.Contract(RACE_CONTRACT, address)
         var raceId = 1
@@ -31,7 +31,9 @@ exports.init = function (req,res,next) {
                 createTransaction.rawTransaction
             )
     
-            console.log(`Transaction successful with hash: ${createReceipt.transactionHash}`)
+            // console.log(`Transaction successful with hash: ${createReceipt.transactionHash}`)
+            res.json(createReceipt.transactionHash);
+            
 
     } catch(err) {
         next(err);
