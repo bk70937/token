@@ -2,9 +2,6 @@
 
 pragma solidity >=0.7.0 <0.9.0;
 
-// racestart - owner address, raceid, timestamp, status, amount - input
-// recewinner - winner address, winner id, winning amount
-
 import "./SafeMath.sol";
 
 interface Token {

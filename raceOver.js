@@ -10,7 +10,7 @@ const TEST_CONTRACT = require('./config/RACE_ABI.json')
 
 const deploy = async () => { 
  
-    const address = '0x9Ffdd57dE2784e3C90Ae7f4C8DF3F6e0f966BF28'
+    const address = '0xD7174604Ca6da15b9ba0bc091C5d676A27F5793a'
     const contract = new web3.eth.Contract(TEST_CONTRACT, address)
     var status = 1
     var raceId = 1
@@ -29,7 +29,9 @@ const deploy = async () => {
             createTransaction.rawTransaction
         )
 
-        console.log(`Transaction successful with hash: ${createReceipt.transactionHash}`)
+        console.log(createReceipt)
+
+        // console.log(`Transaction successful with hash: ${createReceipt.transactionHash}`)
 }
 
 deploy()

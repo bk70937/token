@@ -12,7 +12,7 @@ exports.init = function (req,res,next) {
     try {
         
         const web3 = new Web3(bscScan)
-        const address = '0x35621ddB21653fc5c006F5Db29769E813b8F6406'
+        const address = '0xD7174604Ca6da15b9ba0bc091C5d676A27F5793a'
         const contract = new web3.eth.Contract(RACE_CONTRACT, address)
         var raceId = 1
         var status = 1
@@ -30,9 +30,9 @@ exports.init = function (req,res,next) {
             const createReceipt =  web3.eth.sendSignedTransaction(
                 createTransaction.rawTransaction
             )
-    
+            console.log
             // console.log(`Transaction successful with hash: ${createReceipt.transactionHash}`)
-            res.json(createReceipt.transactionHash);
+            return res.status(201).json(createReceipt.transactionHash);
             
 
     } catch(err) {
