@@ -20,7 +20,7 @@ contract RaceGame {
         uint256 status;
     }
     
-    address public token ;
+    address public token = 0xeD24FC36d5Ee211Ea25A80239Fb8C4Cfd80f12Ee ;
     
     mapping(uint256 => Race) raceMap;
     uint256[] public races;
@@ -28,13 +28,10 @@ contract RaceGame {
     mapping (address => mapping(uint256 => uint256)) raceBoard;
     uint256 winningPercentage = 50 ;
     
-    function raceStart (uint256 _amount) public {
+    function raceStart (uint raceId, uint256 _amount) public {
         
-        uint256 raceId = races.length;
-
         require(_amount > 0, "Error Message");
         require(!raceExist[raceId] , "Already Exist");
-        // uint256 raceId = races.length;
         raceExist[raceId] = true;
         races.push(raceId); 
         raceMap[raceId].owner = msg.sender;
@@ -46,13 +43,12 @@ contract RaceGame {
 
         require(raceMap[_raceId].status == 0, "Game not in Progress") ;
         raceMap[_raceId].status = _status ;
-        raceMap[_raceId].owner = msg.sender;
 
         if(_status == 1) {
             
             uint256 winningAmount = winningPercentage*raceMap[_raceId].entryFee/100 ;
             raceBoard[msg.sender][block.timestamp] = raceMap[_raceId].entryFee.add(winningAmount) ;
-            Token(token).transfer(raceMap[_raceId].owner, winningAmount) ;
+            Token(token).transfer(raceMap[_raceId].owner, raceMap[_raceId].entryFee.add(winningAmount)) ;
             
         }
 

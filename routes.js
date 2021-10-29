@@ -4,7 +4,7 @@ const {register} = require('./controllers/registerController');
 const {login} = require('./controllers/loginController');
 const {getUser} = require('./controllers/getUserController');
 const { namesymbol } = require('./controllers/nameSymbolController');
-// const { raceover } = require('./controllers/raceOverController');
+const { raceover } = require('./controllers/raceOverController');
 
 router.post('/api/register', [
     body('name',"The name must be of minimum 3 characters length")
@@ -56,7 +56,6 @@ router.get('/api/playerLeave', function (req, res) {
     res.json(leave)
 })
 
-
 router.get('/api/endGame', function (req, res) {
     var end = {   
         score : [100],
@@ -83,24 +82,7 @@ router.get('/api/resetPassword', function (req, res) {
     res.json(reset)
 })
 
-router.get('/api/test', function (req, res) {
-    var reset = {   
-        email: ['bk@gmail.com'],
-        bool: true,
-        message: 'test email send successfully'
-    }
-    res.json(reset)
-})
-
-// router.post('/api/raceOver',function(req, res) {
-
-//     var data = {
-//         status: 1,
-//         raceId: 1,
-//     }
-//     res.json(data)
-    
-// }, raceover);
+router.get('/api/raceOver', raceover);
 
 router.get('/api/getNameSymbol',namesymbol);
 
