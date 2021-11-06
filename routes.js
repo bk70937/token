@@ -4,7 +4,6 @@ const {register} = require('./controllers/registerController');
 const {login} = require('./controllers/loginController');
 const {getUser} = require('./controllers/getUserController');
 const { namesymbol } = require('./controllers/nameSymbolController');
-const { raceover } = require('./controllers/raceOverController');
 
 router.post('/api/register', [
     body('name',"The name must be of minimum 3 characters length")
@@ -42,7 +41,7 @@ router.get('/api/startMatch', function (req, res) {
         
         wallet_address: ['0xF35ecD64D97B0Fcf8c90fbCFD163230d75003BF6'],
         amount: 1000000,
- 
+
     }
 
     res.json(match)
@@ -81,8 +80,6 @@ router.get('/api/resetPassword', function (req, res) {
     }
     res.json(reset)
 })
-
-router.get('/api/raceOver', raceover);
 
 router.get('/api/getNameSymbol',namesymbol);
 
