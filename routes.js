@@ -4,6 +4,7 @@ const {register} = require('./controllers/registerController');
 const {login} = require('./controllers/loginController');
 const {getUser} = require('./controllers/getUserController');
 const { namesymbol } = require('./controllers/nameSymbolController');
+// const { creatematch } = require('./controllers/createMatchController');
 
 router.post('/api/register', [
     body('name',"The name must be of minimum 3 characters length")

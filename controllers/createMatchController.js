@@ -1,7 +1,7 @@
 require('dotenv').config();
 
 const Web3 = require('web3')
-const bscScan = 'https://data-seed-prebsc-1-s1.binance.org:8545/' // instead of infura will be used bscscan
+const bscScan = 'https://data-seed-prebsc-1-s1.binance.org:8545/'
 const MATCH_CONTRACT = require('../config/MYCONTRACT_ABI.json')
 const privateKey = process.env.privateKey
 const addressFrom = '0xC8Da7b2DA6B2a757AaFaC0ec5E54dC1C3ba42F7f' 
@@ -11,7 +11,7 @@ exports.init = function(req,res,next) {
     try {
         
         const web3 = new Web3(bscScan)
-        const address = ''
+        const address = '0x2b7a076404507b633926AcF8539e51664E505609'
         const contract = new web3.eth.Contract(MATCH_CONTRACT, address)
         var matchId = 0
         var amount = web3.utils.toWei('1')
