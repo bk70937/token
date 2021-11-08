@@ -33,7 +33,7 @@ contract MyContract
         mapping(address => bool) members;
     }
     
-    address public token ;
+    address public token = 0xeD24FC36d5Ee211Ea25A80239Fb8C4Cfd80f12Ee;
 
     mapping (uint256 => Match) matchesMap;
     mapping (uint256 => uint256) poolCollection;
@@ -51,11 +51,11 @@ contract MyContract
         // _match.entryFee = _amount ;
         // _match.members[msg.sender] = true ;
         // matchesMap[matchId] = _match ;
-        Token(token).transferFrom(msg.sender,address(this),_amount) ;
+        // Token(token).transferFrom(msg.sender,address(this),_amount) ;
         poolCollection[matchId] = poolCollection[matchId].add( _amount) ;
     }
     
-    function joinMatch(uint256 matchId) public  {
+    function joinMatch(uint256 matchId) public {
         require(matchExist[matchId] , "Doesn't Exist") ;
         require(!matchesMap[matchId].members[msg.sender] , "Already Member") ;
         matchesMap[matchId].members[msg.sender] = true ;
@@ -92,7 +92,6 @@ contract MyContract
         userReward[_winner] = userReward[_winner].add(poolCollection[_matchId]) ;
     }
     
-    
     function claim() public  {
         Token(token).transfer(msg.sender,userReward[msg.sender]);
     }
@@ -105,5 +104,5 @@ contract MyContract
     function getReward() public view returns (uint256) {
         return userReward[msg.sender];
     }
-        
+    
 }

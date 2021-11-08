@@ -11,7 +11,7 @@ exports.init = function(req,res,next) {
     try {
         
         const web3 = new Web3(bscScan)
-        const address = '0x2b7a076404507b633926AcF8539e51664E505609'
+        const address = '0x108E95f219f2B3384E0eac82BDb522756Cb914B3'
         const contract = new web3.eth.Contract(MATCH_CONTRACT, address)
         var matchId = 0
         var amount = web3.utils.toWei('1')
