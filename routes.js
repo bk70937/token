@@ -76,7 +76,7 @@ router.get('/api/getNameSymbol',namesymbol);
 const Web3 = require('web3')
 const bscScan = 'https://data-seed-prebsc-1-s1.binance.org:8545/' 
 const MY_CONTRACT = require('./config/MYCONTRACT_ABI.json')
-const address = '0x5E2037763cC87D764cCE0fA72EA003afB35f1203'
+const address = '0x0aCcF47249c35870AC45a140E2642879418C790f'
 
 
 router.get('/api/getbalance', function (req,res,next) {
@@ -87,8 +87,8 @@ router.get('/api/getbalance', function (req,res,next) {
         const myAddress = '0xC8Da7b2DA6B2a757AaFaC0ec5E54dC1C3ba42F7f'
         const contract = new web3.eth.Contract(MY_CONTRACT, address);
 
-        contract.methods.getBalance().call(function(err, data) {
-            // web3.eth.getBalance(myAddress).then(balance => res.status(200).json(`Balance : ${balance}`))
+        contract.methods.getBalance(myAddress).call(function(e, data) {
+            // web3.eth.getBalance(myAddress).then(balance => res.status(200).json(`Balance : ${data.balance}`))
             return res.status(200).json({balance: data})
         })
         
@@ -102,10 +102,11 @@ router.get('/api/getreward', function (req,res,next) {
     try{
 
         const web3 = new Web3(bscScan)
-        const contract = new web3.eth.Contract(MY_CONTRACT, address);
+        const myAddress = '0xC8Da7b2DA6B2a757AaFaC0ec5E54dC1C3ba42F7f'
+        const contract = new web3.eth.Contract(MY_CONTRACT, address)
 
-        contract.methods.getReward().call(function(err, data) {
-            return res.status(201).json({reward: data});
+        contract.methods.getReward(myAddress).call(function(e, data) {
+            return res.status(200).json({reward: data});
         })
         
     } catch(err) {
